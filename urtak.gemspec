@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = Urtak::VERSION
   s.authors     = ["Kunal Shah"]
   s.email       = ["kunal@urtak.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/urtak/urtak-rb"
+  s.summary     = %q{Ruby Client for the Urtak REST API}
+  s.description = %q{Ruby Client for the Urtak REST API}
 
   s.rubyforge_project = "urtak"
 
@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "fakeweb"
+  s.add_development_dependency "vcr"
+  s.add_runtime_dependency "rest-client"
 end
