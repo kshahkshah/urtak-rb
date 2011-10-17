@@ -8,26 +8,26 @@ describe Urtak::Api do
       :api_key         => "fc84ad2e81928c5f045c0cea92e4f1a9444611a0"
     }
 
-    lambda { Urtak::Api.new(settings) }.should_not raise_error
+    expect { Urtak::Api.new(settings) }.to_not raise_error
   end
-  
-  it "should raise an error when used without a token" do
-    settings = {
-      :api_key         => "fc84ad2e81928c5f045c0cea92e4f1a9444611a0"
-    }
 
-    @urtak = Urtak::Api.new(settings)
-    
-    lambda { @urtak.publications }.should raise_error
-  end
-  
   context "accounts" do
     it "should create an account"
     it "should find your account"
   end
 
   context "publications" do
-    it "should find a publication"
+    it "should find a publication" do
+      settings = {
+        :publication_key => "670af63c794ed3475b43c3f7945c1b08", 
+        :api_key         => "fc84ad2e81928c5f045c0cea92e4f1a9444611a0"
+      }
+
+      @urtak = Urtak::Api.new(settings)
+
+      expect { @urtak.get_publication(settings[:publication_key]) }.to_not raise_error
+    end
+
     it "should create a publication"
     it "should update a publication"
   end

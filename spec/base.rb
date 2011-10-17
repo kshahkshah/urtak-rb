@@ -22,3 +22,5 @@ begin
 rescue LoadError
   # NOP, ignore
 end
+
+require File.dirname(__FILE__) + '/../lib/urtak'
