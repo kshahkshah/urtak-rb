@@ -23,9 +23,10 @@ describe Urtak::Api do
         :api_key         => "fc84ad2e81928c5f045c0cea92e4f1a9444611a0"
       }
 
-      @urtak = Urtak::Api.new(settings)
-
-      expect { @urtak.get_publication(settings[:publication_key]) }.to_not raise_error
+      VCR.use_cassette('get_publication') do
+        @urtak = Urtak::Api.new(settings)
+        expect { @urtak.get_publication(settings[:publication_key]) }.to_not raise_error
+      end
     end
 
     it "should create a publication"

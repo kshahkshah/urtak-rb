@@ -1,0 +1,49 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://urtak.com:443/api/publications/670af63c794ed3475b43c3f7945c1b08?publication_key=670af63c794ed3475b43c3f7945c1b08&timestamp=1319055637&signature=05e0da23ed1a029968882d7b6088370930302f74
+    body: !!null 
+    headers:
+      accept:
+      - application/vnd.urtak.urtak+json; version=1.0
+      accept-encoding:
+      - gzip, deflate
+      user-agent:
+      - Urtak API Wrapper for Ruby, v0.9.7
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.2
+      date:
+      - Wed, 19 Oct 2011 20:20:38 GMT
+      content-type:
+      - application/vnd.urtak.urtak+json; charset=utf-8
+      connection:
+      - keep-alive
+      status:
+      - '200'
+      x-powered-by:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.7
+      etag:
+      - ! '"3a03ef184f10d7a250383010e4af9d22"'
+      p3p:
+      - CP="DSP LAW"
+      x-runtime:
+      - '59'
+      content-length:
+      - '203'
+      set-cookie:
+      - urtak-session=1a628e0844f685b9a30267f1a73f66eb; domain=urtak.com; path=/;
+        expires=Wed, 19-Oct-2011 23:20:38 GMT; HttpOnly; secure
+      cache-control:
+      - private, max-age=0, must-revalidate
+      strict-transport-security:
+      - max-age=31536000
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+    body: ! '{"publication":{"created_at":1318359371,"theme":{"name":"WordPress","id":15},"domains":{"url":"gaia.urtak.com"},"language":"en","id":50,"moderation":"community","key":"670af63c794ed3475b43c3f7945c1b08"}}'
+    http_version: '1.1'
