@@ -1,0 +1,47 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :put
+    uri: https://urtak.com:443/api/publications/670af63c794ed3475b43c3f7945c1b08
+    body: !!null 
+    headers:
+      accept:
+      - application/vnd.urtak.urtak+json; version=1.0
+      accept-encoding:
+      - gzip, deflate
+      user-agent:
+      - Urtak API Wrapper for Ruby, v0.9.7
+      content-type:
+      - application/json
+      content-length:
+      - '199'
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 204
+      message: No Content
+    headers:
+      server:
+      - nginx/1.0.2
+      date:
+      - Wed, 19 Oct 2011 22:40:46 GMT
+      connection:
+      - keep-alive
+      status:
+      - '204'
+      x-powered-by:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.7
+      p3p:
+      - CP="DSP LAW"
+      x-runtime:
+      - '20'
+      set-cookie:
+      - urtak-session=f81e40ab6cbad9fc171a1fe4901c4938; domain=urtak.com; path=/;
+        expires=Thu, 20-Oct-2011 01:40:46 GMT; HttpOnly; secure
+      cache-control:
+      - no-cache
+      strict-transport-security:
+      - max-age=31536000
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+    body: !!null 
+    http_version: '1.1'

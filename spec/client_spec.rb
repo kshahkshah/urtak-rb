@@ -1,15 +1,21 @@
 require File.join( File.dirname(File.expand_path(__FILE__)), 'base')
 
 describe Urtak::Api do
-
-  it "should set up an API Client when given valid settings" do
-    settings = {
+  
+  before(:all) do
+    @settings = {
       :publication_key => "670af63c794ed3475b43c3f7945c1b08", 
       :api_key         => "fc84ad2e81928c5f045c0cea92e4f1a9444611a0"
     }
-
-    expect { Urtak::Api.new(settings) }.to_not raise_error
   end
+
+  it "should set up an API Client when given valid settings" do
+    expect { Urtak::Api.new(@settings) }.to_not raise_error
+  end
+
+  it "should form http requests with proper accept headers"
+  it "should form http post requests with a proper content type"
+  it "should sign requests properly"
 
   context "accounts" do
     it "should create an account"
@@ -18,25 +24,70 @@ describe Urtak::Api do
 
   context "publications" do
     it "should find a publication" do
-      settings = {
-        :publication_key => "670af63c794ed3475b43c3f7945c1b08", 
-        :api_key         => "fc84ad2e81928c5f045c0cea92e4f1a9444611a0"
-      }
-
-      VCR.use_cassette('get_publication') do
-        @urtak = Urtak::Api.new(settings)
-        expect { @urtak.get_publication(settings[:publication_key]) }.to_not raise_error
+      VCR.use_cassette('get_publication', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.get_publication(@settings[:publication_key])
+        response.class.should eq(Urtak::Response)
+        response.code.should eq(200)
       end
     end
 
-    it "should create a publication"
-    it "should update a publication"
+    it "should create a publication" do
+      VCR.use_cassette('create_publication') do
+        @client = Urtak::Api.new(@settings)
+        publication = {
+          :name     => "Fun with VCRs",
+          :domains  => "knossos.local"
+        }
+        response = @client.create_publication(publication)
+        response.code.should eq(201)
+      end
+    end
+
+    it "should update a publication" do
+      VCR.use_cassette('update_publication') do
+        @client = Urtak::Api.new(@settings)
+        publication = {
+          :name     => "Fun with VCRs",
+          :domains  => "funwithvcrs.com"
+        }
+        response = @client.update_publication(@settings[:publication_key], publication)
+        response.code.should eq(204)
+      end
+    end
   end
 
   context "urtaks" do
-    it "should list urtaks"
-    it "should find an urtak"
-    it "should create an urtak"
+    it "should list urtaks" do
+      VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.list_urtaks
+        response.code.should eq(200)
+        response.body['urtaks']['urtak'].class.should eq(Array)
+      end
+    end
+
+    it "should create an urtak" do
+      VCR.use_cassette('create_urtak') do
+        @client = Urtak::Api.new(@settings)
+        @post_id = Digest::SHA1.hexdigest("#{Time.now.to_i}")
+        urtak = {
+          :name     => "200 Fun Things to Do with Cassette Tape",
+          :post_id  => @post_id
+        }
+        response = @client.create_urtak(urtak)
+        response.code.should eq(201)
+      end
+    end
+
+    it "should find an urtak" do
+      VCR.use_cassette('get_urtak', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.get_urtak(:post_id, @post_id)
+        response.code.should eq(200)
+      end
+    end
+
     it "should update an urtak"
   end
 

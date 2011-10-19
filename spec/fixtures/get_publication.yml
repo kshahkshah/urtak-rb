@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: :get
-    uri: https://urtak.com:443/api/publications/670af63c794ed3475b43c3f7945c1b08?publication_key=670af63c794ed3475b43c3f7945c1b08&timestamp=1319055637&signature=05e0da23ed1a029968882d7b6088370930302f74
+    uri: https://urtak.com:443/api/publications/670af63c794ed3475b43c3f7945c1b08?publication_key=670af63c794ed3475b43c3f7945c1b08&timestamp=1319062521&signature=60f0413b2fc98aadc2bea3b218c8b2740b02f1b0
     body: !!null 
     headers:
       accept:
@@ -19,7 +19,7 @@
       server:
       - nginx/1.0.2
       date:
-      - Wed, 19 Oct 2011 20:20:38 GMT
+      - Wed, 19 Oct 2011 22:15:21 GMT
       content-type:
       - application/vnd.urtak.urtak+json; charset=utf-8
       connection:
@@ -33,12 +33,12 @@
       p3p:
       - CP="DSP LAW"
       x-runtime:
-      - '59'
+      - '30'
       content-length:
       - '203'
       set-cookie:
-      - urtak-session=1a628e0844f685b9a30267f1a73f66eb; domain=urtak.com; path=/;
-        expires=Wed, 19-Oct-2011 23:20:38 GMT; HttpOnly; secure
+      - urtak-session=05887372398e1d7b8b767d4bc2f7b7a7; domain=urtak.com; path=/;
+        expires=Thu, 20-Oct-2011 01:15:21 GMT; HttpOnly; secure
       cache-control:
       - private, max-age=0, must-revalidate
       strict-transport-security:

@@ -47,8 +47,8 @@ module Urtak
       Response.new(fire(:post, "publications", {:publication => attributes}))
     end
     
-    def update_publication(attributes)
-      Response.new(fire(:put, "publications", {:publication => attributes}))
+    def update_publication(key, attributes)
+      Response.new(fire(:put, "publications/#{key}", {:publication => attributes}))
     end
     
     # URTAKS
@@ -68,7 +68,7 @@ module Urtak
       Response.new(fire(:get, path, options))
     end
     
-    def create_urtak(urtak_attributes, questions)
+    def create_urtak(urtak_attributes, questions=[])
       Response.new(fire(:post, 'urtaks', {:urtak => urtak_attributes.merge(:questions => questions)}))
     end
     
@@ -223,7 +223,9 @@ module Urtak
     def initialize(response)
       @raw = response
 
-      if response.headers[:content_type].match(/json/)
+      if response.headers[:content_type].nil?
+        @body = response
+      elsif response.headers[:content_type].match(/json/)
         @body = JSON.parse(response)
       elsif response.headers[:content_type].match(/xml/)
         raise Urtak::Errors::Unimplemented
