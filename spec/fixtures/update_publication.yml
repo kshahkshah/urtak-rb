@@ -23,7 +23,7 @@
       server:
       - nginx/1.0.2
       date:
-      - Wed, 19 Oct 2011 22:40:46 GMT
+      - Thu, 20 Oct 2011 16:53:42 GMT
       connection:
       - keep-alive
       status:
@@ -35,8 +35,8 @@
       x-runtime:
       - '20'
       set-cookie:
-      - urtak-session=f81e40ab6cbad9fc171a1fe4901c4938; domain=urtak.com; path=/;
-        expires=Thu, 20-Oct-2011 01:40:46 GMT; HttpOnly; secure
+      - urtak-session=35040bc57ed4f59d2b334c779afec44a; domain=urtak.com; path=/;
+        expires=Thu, 20-Oct-2011 19:53:42 GMT; HttpOnly; secure
       cache-control:
       - no-cache
       strict-transport-security:

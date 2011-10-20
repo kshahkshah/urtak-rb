@@ -72,8 +72,9 @@ describe Urtak::Api do
         @client = Urtak::Api.new(@settings)
         @post_id = Digest::SHA1.hexdigest("#{Time.now.to_i}")
         urtak = {
-          :name     => "200 Fun Things to Do with Cassette Tape",
-          :post_id  => @post_id
+          :title      => "200 Fun Things to Do with Cassette Tape",
+          :post_id    => @post_id,
+          :permalink  => "http://knossos.local/#{@post_id}-200-fun-things-to-do-with-cassette-tape"
         }
         response = @client.create_urtak(urtak)
         response.code.should eq(201)
@@ -81,10 +82,17 @@ describe Urtak::Api do
     end
 
     it "should find an urtak" do
-      VCR.use_cassette('get_urtak', :match_requests_on => [:method, :host, :path]) do
+      VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
         @client = Urtak::Api.new(@settings)
-        response = @client.get_urtak(:post_id, @post_id)
-        response.code.should eq(200)
+        response = @client.list_urtaks
+        @urtaks = response.body['urtaks']['urtak']
+
+        VCR.use_cassette('get_urtak', :match_requests_on => [:method, :host, :path]) do
+          @client = Urtak::Api.new(@settings)
+          response = @client.get_urtak(:post_id, @urtaks.last['post_id'])
+          response.code.should eq(200)
+        end
+
       end
     end
 

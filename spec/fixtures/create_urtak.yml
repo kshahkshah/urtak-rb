@@ -14,34 +14,42 @@
       content-type:
       - application/json
       content-length:
-      - '259'
+      - '376'
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
     headers:
       server:
       - nginx/1.0.2
       date:
-      - Wed, 19 Oct 2011 23:11:13 GMT
+      - Thu, 20 Oct 2011 16:53:44 GMT
       content-type:
       - application/vnd.urtak.urtak+json; charset=utf-8
       connection:
       - keep-alive
       status:
-      - '400'
+      - '200'
       x-powered-by:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.7
+      etag:
+      - ! '"45ad3fc7a9be339f8352b0cd1f653fee"'
       p3p:
       - CP="DSP LAW"
+      location:
+      - https://urtak.com/api/urtaks/9850
+      x-runtime:
+      - '185'
       content-length:
-      - '57'
+      - '183'
       set-cookie:
-      - urtak-session=8f41ca49f30518b77c9150cca94fb977; domain=urtak.com; path=/;
-        expires=Thu, 20-Oct-2011 02:11:13 GMT; HttpOnly; secure
+      - urtak-session=b48a9f4a77ff27a78d3860b813f3b402; domain=urtak.com; path=/;
+        expires=Thu, 20-Oct-2011 19:53:44 GMT; HttpOnly; secure
       cache-control:
-      - no-cache
+      - private, max-age=0, must-revalidate
       strict-transport-security:
       - max-age=31536000
-    body: ! '{"error":{"message":["post_permalink","can''t be blank"]}}'
+      x-ua-compatible:
+      - IE=Edge,chrome=1
+    body: ! '{"urtak":{"created_at":1319129624,"questions":{"question":[]},"id":9850,"link":[{"href":"https://urtak.com/api/urtaks","rel":"index","type":"application/json"}],"status":"published"}}'
     http_version: '1.1'

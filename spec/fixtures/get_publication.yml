@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: :get
-    uri: https://urtak.com:443/api/publications/670af63c794ed3475b43c3f7945c1b08?publication_key=670af63c794ed3475b43c3f7945c1b08&timestamp=1319062521&signature=60f0413b2fc98aadc2bea3b218c8b2740b02f1b0
+    uri: https://urtak.com:443/api/publications/670af63c794ed3475b43c3f7945c1b08?publication_key=670af63c794ed3475b43c3f7945c1b08&timestamp=1319129620&signature=d7e88f0bde0800c0926cccc6a3cbad5e3f016d85
     body: !!null 
     headers:
       accept:
@@ -19,7 +19,7 @@
       server:
       - nginx/1.0.2
       date:
-      - Wed, 19 Oct 2011 22:15:21 GMT
+      - Thu, 20 Oct 2011 16:53:40 GMT
       content-type:
       - application/vnd.urtak.urtak+json; charset=utf-8
       connection:
@@ -29,21 +29,21 @@
       x-powered-by:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.7
       etag:
-      - ! '"3a03ef184f10d7a250383010e4af9d22"'
+      - ! '"9b62ed5a9af886b24c8f5b1afeba99fe"'
       p3p:
       - CP="DSP LAW"
       x-runtime:
-      - '30'
+      - '47'
       content-length:
-      - '203'
+      - '204'
       set-cookie:
-      - urtak-session=05887372398e1d7b8b767d4bc2f7b7a7; domain=urtak.com; path=/;
-        expires=Thu, 20-Oct-2011 01:15:21 GMT; HttpOnly; secure
+      - urtak-session=5ee2e7d6b40a867cf8bd138dd88e620a; domain=urtak.com; path=/;
+        expires=Thu, 20-Oct-2011 19:53:40 GMT; HttpOnly; secure
       cache-control:
       - private, max-age=0, must-revalidate
       strict-transport-security:
       - max-age=31536000
       x-ua-compatible:
       - IE=Edge,chrome=1
-    body: ! '{"publication":{"created_at":1318359371,"theme":{"name":"WordPress","id":15},"domains":{"url":"gaia.urtak.com"},"language":"en","id":50,"moderation":"community","key":"670af63c794ed3475b43c3f7945c1b08"}}'
+    body: ! '{"publication":{"created_at":1318359371,"theme":{"name":"WordPress","id":15},"domains":{"url":"funwithvcrs.com"},"language":"en","id":50,"moderation":"community","key":"670af63c794ed3475b43c3f7945c1b08"}}'
     http_version: '1.1'

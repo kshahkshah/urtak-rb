@@ -23,7 +23,7 @@
       server:
       - nginx/1.0.2
       date:
-      - Wed, 19 Oct 2011 22:15:22 GMT
+      - Thu, 20 Oct 2011 16:53:41 GMT
       content-type:
       - application/vnd.urtak.urtak+json; charset=utf-8
       connection:
@@ -35,17 +35,17 @@
       p3p:
       - CP="DSP LAW"
       location:
-      - https://urtak.com/api/publications/4358d13f4e66c6ec75fa71263dc48f0a
+      - https://urtak.com/api/publications/62f6e8aefce0282ce36549c467fc8172
       x-runtime:
-      - '14'
+      - '26'
       content-length:
       - '199'
       set-cookie:
-      - urtak-session=c013c05f49c2956f14578cb998fd1fa2; domain=urtak.com; path=/;
-        expires=Thu, 20-Oct-2011 01:15:22 GMT; HttpOnly; secure
+      - urtak-session=609203f0e6e200c38899b0281fc07739; domain=urtak.com; path=/;
+        expires=Thu, 20-Oct-2011 19:53:41 GMT; HttpOnly; secure
       cache-control:
       - no-cache
       strict-transport-security:
       - max-age=31536000
-    body: ! '{"publication":{"created_at":1319062522,"theme":{"name":"default","id":0},"domains":{"url":"knossos.local"},"language":"en","id":86,"moderation":"community","key":"4358d13f4e66c6ec75fa71263dc48f0a"}}'
+    body: ! '{"publication":{"created_at":1319129621,"theme":{"name":"default","id":0},"domains":{"url":"knossos.local"},"language":"en","id":93,"moderation":"community","key":"62f6e8aefce0282ce36549c467fc8172"}}'
     http_version: '1.1'

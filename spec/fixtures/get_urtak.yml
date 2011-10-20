@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: :get
-    uri: https://urtak.com:443/api/urtaks/post/?publication_key=670af63c794ed3475b43c3f7945c1b08&timestamp=1319065800&signature=fa4c2f55008f0d35febbd8507f1155eab7b6cfb9
+    uri: https://urtak.com:443/api/urtaks/post/512?publication_key=670af63c794ed3475b43c3f7945c1b08&timestamp=1319129624&signature=69c57bfd2dc3159a47c834dd197ed9a197a643dc
     body: !!null 
     headers:
       accept:
@@ -19,7 +19,7 @@
       server:
       - nginx/1.0.2
       date:
-      - Wed, 19 Oct 2011 23:10:00 GMT
+      - Thu, 20 Oct 2011 16:53:44 GMT
       content-type:
       - application/vnd.urtak.urtak+json; charset=utf-8
       connection:
@@ -31,14 +31,13 @@
       p3p:
       - CP="DSP LAW"
       content-length:
-      - '89'
+      - '60'
       set-cookie:
-      - urtak-session=6e4a150973dee142e5d0fa6f98e11035; domain=urtak.com; path=/;
-        expires=Thu, 20-Oct-2011 02:10:00 GMT; HttpOnly; secure
+      - urtak-session=61e911c4e58384de48057f4290d91951; domain=urtak.com; path=/;
+        expires=Thu, 20-Oct-2011 19:53:45 GMT; HttpOnly; secure
       cache-control:
       - no-cache
       strict-transport-security:
       - max-age=31536000
-    body: ! '{"error":{"message":"Couldn''t find Urtak with ID=post AND (`contexts`.user_id
-      = 15151)"}}'
+    body: ! '{"error":{"message":"Urtak Not Found for this Publication"}}'
     http_version: '1.1'
