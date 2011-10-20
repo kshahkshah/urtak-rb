@@ -1,6 +1,5 @@
 require 'urtak/version'
 require 'rest_client'
-require 'ruby-debug'
 require 'digest/sha1'
 
 # XML is supported by the API, but this wrapper does not parse it automatically!
