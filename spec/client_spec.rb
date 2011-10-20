@@ -120,7 +120,23 @@ describe Urtak::Api do
   end
 
   context "urtak-questions" do
-    it "should list questions on an urtak"
+    before(:each) do
+      VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.list_urtaks
+        @urtak = response.body['urtaks']['urtak'].last
+      end
+    end
+
+    it "should list questions on an urtak" do
+      VCR.use_cassette('list_urtak_questions', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.list_urtak_questions(:id, @urtak['id'])
+        response.code.should eq(200)
+        response.body['questions']['question'].class.should eq(Array)
+      end
+    end
+
     it "should find a question on an urtak"
     it "should create a question"
     it "should approve a question"
