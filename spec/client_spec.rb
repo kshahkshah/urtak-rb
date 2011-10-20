@@ -85,18 +85,38 @@ describe Urtak::Api do
       VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
         @client = Urtak::Api.new(@settings)
         response = @client.list_urtaks
-        @urtaks = response.body['urtaks']['urtak']
+        @urtak = response.body['urtaks']['urtak'].last
 
         VCR.use_cassette('get_urtak', :match_requests_on => [:method, :host, :path]) do
           @client = Urtak::Api.new(@settings)
-          response = @client.get_urtak(:post_id, @urtaks.last['post_id'])
+          response = @client.get_urtak(:post_id, @urtak['post_id'])
           response.code.should eq(200)
         end
 
       end
     end
 
-    it "should update an urtak"
+    it "should update an urtak" do
+      VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.list_urtaks
+        @urtak = response.body['urtaks']['urtak'].last
+
+        VCR.use_cassette('update_urtak') do
+          @client = Urtak::Api.new(@settings)
+
+          urtak = {
+            :title      => "200 really fun things to do with a cassette tape",
+            :post_id    => @urtak['post_id'],
+            :permalink  => "http://knossos.local/#{@urtak['post_id']}-200-fun-things-to-do-with-cassette-tape"
+          }
+
+          response = @client.update_urtak(:post_id, urtak)
+          response.code.should eq(204)
+        end
+
+      end
+    end
   end
 
   context "urtak-questions" do
