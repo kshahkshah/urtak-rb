@@ -23,7 +23,7 @@ module Urtak
         :api_base         => "https://urtak.com/api",
         :api_format       => "JSON",
         :client_name      => "Urtak API Wrapper for Ruby, v#{Urtak::VERSION}"
-      }.merge(user_options)
+      }.merge(user_options.select{|k,v|!v.nil?})
       
       raise Urtak::Errors::NoApiKey if options[:api_key].empty?
     end

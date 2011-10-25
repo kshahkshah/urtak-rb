@@ -4,8 +4,9 @@ describe Urtak::Api do
   
   before(:all) do
     @settings = {
-      :publication_key => "670af63c794ed3475b43c3f7945c1b08", 
-      :api_key         => "fc84ad2e81928c5f045c0cea92e4f1a9444611a0"
+      :publication_key => ENV['PUB_KEY'], 
+      :api_key         => ENV['API_KEY'],
+      :api_base        => ENV['API_BASE'],
     }
   end
 
