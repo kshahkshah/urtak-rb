@@ -61,7 +61,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}"
       end
       
       Response.new(fire(:get, path, options))
@@ -79,7 +79,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}"
       end
       
       Response.new(fire(:put, path, {:urtak => attributes}))
@@ -92,7 +92,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}/questions"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}/questions"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions"
       end
       
       Response.new(fire(:get, path, options))
@@ -104,7 +104,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}/questions/#{id}"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}/questions/#{id}"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions/#{id}"
       end
 
       Response.new(fire(:get, path, options))
@@ -116,7 +116,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}/questions"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}/questions"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions"
       end
 
       Response.new(fire(:post, path, {:questions => questions}))
@@ -128,7 +128,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}/questions/#{id}/approve"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}/questions/#{id}/approve"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions/#{id}/approve"
       end
 
       Response.new(fire(:put, path))
@@ -140,7 +140,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}/questions/#{id}/reject"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}/questions/#{id}/reject"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions/#{id}/reject"
       end
 
       Response.new(fire(:put, path))
@@ -152,7 +152,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}/questions/#{id}/spam"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}/questions/#{id}/spam"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions/#{id}/spam"
       end
 
       Response.new(fire(:put, path))
@@ -164,7 +164,7 @@ module Urtak
       elsif property == :post_id
         path = "urtaks/post/#{value}/questions/#{id}/ham"
       elsif property == :permalink
-        path = "urtaks/permalink/#{value}/questions/#{id}/ham"
+        path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions/#{id}/ham"
       end
 
       Response.new(fire(:put, path))
