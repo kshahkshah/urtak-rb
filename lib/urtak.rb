@@ -110,7 +110,7 @@ module Urtak
       Response.new(fire(:get, path, options))
     end
     
-    def create_urtak_questions(property, value, questions)
+    def create_urtak_question(property, value, question)
       if property == :id
         path = "urtaks/#{value}/questions"
       elsif property == :post_id
@@ -119,7 +119,7 @@ module Urtak
         path = "urtaks/hash/#{Digest::SHA1.hexdigest(value)}/questions"
       end
 
-      Response.new(fire(:post, path, {:questions => questions}))
+      Response.new(fire(:post, path, {:question => question}))
     end
     
     def approve_urtak_question(property, value, id)
