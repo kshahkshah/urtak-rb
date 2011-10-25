@@ -77,23 +77,56 @@ describe Urtak::Api do
           :post_id    => @post_id,
           :permalink  => "http://knossos.local/#{@post_id}-200-fun-things-to-do-with-cassette-tape"
         }
-        response = @client.create_urtak(urtak)
+        questions = [
+          {:text => "Do you know what betamax is?"},
+          {:text => "Are you familiar with physics behind magnetic storage?"},
+          {:text => "Have you ever had to repair a cassette tape?"},
+          {:text => "Have you ever pulled tape from a reel for fun?"}
+        ]
+        response = @client.create_urtak(urtak, questions)
         response.code.should eq(201)
       end
     end
 
-    it "should find an urtak" do
+    it "should find an urtak by id" do
       VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
         @client = Urtak::Api.new(@settings)
         response = @client.list_urtaks
         @urtak = response.body['urtaks']['urtak'].last
 
-        VCR.use_cassette('get_urtak', :match_requests_on => [:method, :host, :path]) do
+        VCR.use_cassette('get_urtak_by_id', :match_requests_on => [:method, :host, :path]) do
+          @client = Urtak::Api.new(@settings)
+          response = @client.get_urtak(:id, @urtak['id'])
+          response.code.should eq(200)
+        end
+      end
+    end
+
+    it "should find an urtak by permalink hash" do
+      VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.list_urtaks
+        @urtak = response.body['urtaks']['urtak'].last
+
+        VCR.use_cassette('get_urtak_by_permalink', :match_requests_on => [:method, :host, :path]) do
+          @client = Urtak::Api.new(@settings)
+          response = @client.get_urtak(:permalink, @urtak['permalink'])
+          response.code.should eq(200)
+        end
+      end
+    end
+
+    it "should find an urtak by post_id" do
+      VCR.use_cassette('list_urtaks', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.list_urtaks
+        @urtak = response.body['urtaks']['urtak'].last
+
+        VCR.use_cassette('get_urtak_by_post_id', :match_requests_on => [:method, :host, :path]) do
           @client = Urtak::Api.new(@settings)
           response = @client.get_urtak(:post_id, @urtak['post_id'])
           response.code.should eq(200)
         end
-
       end
     end
 
@@ -138,8 +171,35 @@ describe Urtak::Api do
       end
     end
 
-    it "should find a question on an urtak"
-    it "should create a question"
+    it "should find a question on an urtak" do
+      VCR.use_cassette('list_urtak_questions', :match_requests_on => [:method, :host, :path]) do
+        @client = Urtak::Api.new(@settings)
+        response = @client.list_urtak_questions(:id, @urtak['id'])
+        @question = response.body['questions']['question'].last
+
+        VCR.use_cassette('find_urtak_question', :match_requests_on => [:method, :host, :path]) do
+          @client = Urtak::Api.new(@settings)
+          response = @client.get_urtak_question(:id, @urtak['id'], @question['id'])
+          response.code.should eq(200)
+          response.body['question'].class.should eq(Hash)
+          response.body['question']['status'].should eq("approved")
+        end
+      end
+    end
+
+    it "should create a question" do
+      VCR.use_cassette('list_urtak_questions', :match_requests_on => [:method, :host, :path]) do
+        VCR.use_cassette('create_urtak_question') do
+          @client = Urtak::Api.new(@settings)
+          question = {:text => "Have you ever owned a VCR?"}
+          response = @client.create_urtak_question(:id, @urtak['id'], question)
+          response.code.should eq(201)
+          base = "#{@client.options[:api_base]}/urtaks/#{@urtak['id']}/questions"
+          response.headers[:location].should =~ /#{Regexp.escape(base)}\/\d+/
+        end
+      end
+    end
+
     it "should approve a question"
     it "should reject a question"
     it "should mark a question as spam"
