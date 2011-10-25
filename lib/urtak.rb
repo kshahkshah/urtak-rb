@@ -222,12 +222,15 @@ module Urtak
     def initialize(response)
       @raw = response
 
+      # TODO case statement
       if response.headers[:content_type].nil?
         @body = response
       elsif response.headers[:content_type].match(/json/)
         @body = JSON.parse(response)
       elsif response.headers[:content_type].match(/xml/)
         raise Urtak::Errors::Unimplemented
+      else
+        @body = response
       end
     end
     
