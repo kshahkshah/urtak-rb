@@ -3,3 +3,5 @@ rvm:
   - 1.9.2
   - 1.9.3
   - ree
+env:
+  - PUB_KEY=75a52d3a204e0afac11b1a5baf41ac78 API_KEY=e6762ad895dc3fc9f2251e1daea09ba89b2e0c74
